@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="36b24baf-638d-4cab-9385-b8128603a173" activeEnvironment="Default" name="PlaceSearchGroovyAssertion_XML_Project" resourceRoot="" soapui-version="5.4.0-EB" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:RestService" id="11178aa0-6de6-4d77-95d3-5803e971ca47" wadlVersion="http://wadl.dev.java.net/2009/02" name="https://maps.googleapis.com" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart=""/><con:endpoints><con:endpoint>https://maps.googleapis.com</con:endpoint></con:endpoints><con:resource name="Xml" path="/maps/api/place/textsearch/xml" id="bff30dc2-1305-4caf-99be-a74ef806055f"><con:settings/><con:parameters><con:parameter><con:name>query</con:name><con:value>restaurants in Stropkov</con:value><con:style>QUERY</con:style><con:default>restaurants in Stropkov</con:default><con:path xsi:nil="true"/><con:description xsi:nil="true"/></con:parameter><con:parameter><con:name>key</con:name><con:value>AIzaSyCm8oIslCMLnnLk2qQrDNbackG3qMLOr1Y HTTP/1.1</con:value><con:style>QUERY</con:style><con:default>AIzaSyCm8oIslCMLnnLk2qQrDNbackG3qMLOr1Y HTTP/1.1</con:default><con:path xsi:nil="true"/><con:description xsi:nil="true"/></con:parameter></con:parameters><con:method name="Xml 1" id="e2fee898-266d-44ac-8dd7-2366f99fee01" method="GET"><con:settings/><con:parameters/><con:representation type="RESPONSE"><con:mediaType>application/xml; charset=UTF-8</con:mediaType><con:status>200</con:status><con:params/><con:element>PlaceSearchResponse</con:element></con:representation><con:request name="Request 1" id="2ec12eda-2e48-47db-a579-48c454be90ce" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>https://maps.googleapis.com</con:endpoint><con:request/><con:originalUri>https://maps.googleapis.com/maps/api/place/textsearch/xml</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters>
+  <con:entry key="query" value="restaurants in Stropkov"/>
+  <con:entry key="key" value="AIzaSyCm8oIslCMLnnLk2qQrDNbackG3qMLOr1Y"/>
+</con:parameters><con:parameterOrder><con:entry>query</con:entry><con:entry>key</con:entry></con:parameterOrder></con:request></con:method></con:resource></con:interface><con:interface xsi:type="con:RestService" id="c9745f38-ca98-4554-901d-4145a692da44" wadlVersion="http://wadl.dev.java.net/2009/02" name="https://maps.googleapis.com" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart=""/><con:endpoints><con:endpoint>https://maps.googleapis.com</con:endpoint></con:endpoints><con:resource name="Xml" path="/maps/api/distancematrix/xml" id="9e1ce73b-c99f-49aa-ad89-15b779cfebe7"><con:settings/><con:parameters><con:parameter><con:name>origins</con:name><con:value>Vancouver BC|Seattle</con:value><con:style>QUERY</con:style><con:default>Vancouver BC|Seattle</con:default><con:path xsi:nil="true"/><con:description xsi:nil="true"/></con:parameter><con:parameter><con:name>destinations</con:name><con:value>San Francisco|Victoria BC</con:value><con:style>QUERY</con:style><con:default>San Francisco|Victoria BC</con:default><con:path xsi:nil="true"/><con:description xsi:nil="true"/></con:parameter><con:parameter><con:name>key</con:name><con:value>AIzaSyAq4N34HIgzwzHF-YJuf1EOqRwtoqsBCfY</con:value><con:style>QUERY</con:style><con:default>AIzaSyAq4N34HIgzwzHF-YJuf1EOqRwtoqsBCfY</con:default><con:path xsi:nil="true"/><con:description xsi:nil="true"/></con:parameter></con:parameters><con:method name="Xml 1" id="c468ef36-4312-4ad2-ae40-9c40f124f7f5" method="GET"><con:settings/><con:parameters/><con:representation type="RESPONSE"><con:mediaType>application/xml; charset=UTF-8</con:mediaType><con:status>200</con:status><con:params/><con:element>DistanceMatrixResponse</con:element></con:representation><con:request name="Request 1" id="a273e51a-0260-45f1-b6d6-6a5646d0e7d9" mediaType="application/json"><con:settings/><con:endpoint>https://maps.googleapis.com</con:endpoint><con:request/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters>
+  <con:entry key="destinations" value="San Francisco|Victoria BC"/>
+  <con:entry key="origins" value="Vancouver BC|Seattle"/>
+  <con:entry key="key" value="AIzaSyAq4N34HIgzwzHF-YJuf1EOqRwtoqsBCfY"/>
+</con:parameters><con:parameterOrder><con:entry>origins</con:entry><con:entry>destinations</con:entry><con:entry>key</con:entry></con:parameterOrder></con:request></con:method></con:resource></con:interface><con:testSuite id="297bc33d-0f3f-4cdb-a4ee-df6eaec824ae" name="PlaceSearch_Assertions_TestSuite"><con:description>TestSuite generated for REST Service [https://maps.googleapis.com]</con:description><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="c50d44fa-b63a-4f9c-911b-52b9d80ed235" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="Xml TestCase" searchProperties="true"><con:description>TestCase generated for REST Resource [Xml] located at [/maps/api/place/textsearch/xml]</con:description><con:settings/><con:testStep type="restrequest" name="Request 1" id="40ae7aa9-55f8-47db-87f9-060bda3f4a4f"><con:settings/><con:config service="https://maps.googleapis.com" resourcePath="/maps/api/place/textsearch/xml" methodName="Xml 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="Request 1" id="2ec12eda-2e48-47db-a579-48c454be90ce" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>https://maps.googleapis.com</con:endpoint><con:request/><con:originalUri>https://maps.googleapis.com/maps/api/place/textsearch/xml</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters>
+  <con:entry key="query" value="&quot;restaurants in&quot; +${#TestCase#city}"/>
+  <con:entry key="key" value="AIzaSyCm8oIslCMLnnLk2qQrDNbackG3qMLOr1Y"/>
+</con:parameters><con:parameterOrder><con:entry>query</con:entry><con:entry>key</con:entry></con:parameterOrder></con:restRequest></con:config></con:testStep><con:testStep type="groovy" name="data" id="fb46f6dc-5097-4c7b-8bb4-c9f694f41eee" disabled="true"><con:settings/><con:config><script>import com.eviware.soapui.support.XmlHolder
+//Load the text file
+ def inputFile = new File("C://Users//Tomas//Desktop//testovanie SW//soapUI//udemyCourse//city_data.txt");
+ 
+//Create an empty list...
+ def UrlList = [];
+ 
+//...and then populate it with the contents
+ // of the text file.
+ addURLstoList = {UrlList.add(it)};
+ inputFile.eachLine(addURLstoList);
+ 
+//Randomly pick an item from the list...
+ def randomIndex = (int)Math.random()*UrlList.size;
+ def randomURL = UrlList.get(randomIndex);
+ //log.info randomURL
+  
+//...and assign its value to the Test Case Property
+ // titled &amp;quot;DynamicContentId&amp;quot;
+ def tc = testRunner.testCase;
+ tc.setPropertyValue("city", randomURL);
+
+def response=context.expand('${Request 1#response}')
+//log.info response
+</script></con:config></con:testStep><con:setupScript>import com.eviware.soapui.support.XmlHolder
+//Load the text file
+ def inputFile = new File("C://Users//Tomas//Desktop//testovanie SW//soapUI//udemyCourse//city_data.txt");
+ 
+//Create an empty list...
+ def UrlList = [];
+ 
+//...and then populate it with the contents
+ // of the text file.
+ addURLstoList = {UrlList.add(it)};
+ inputFile.eachLine(addURLstoList);
+ 
+//Randomly pick an item from the list...
+ def randomIndex = (int)Math.random()*UrlList.size;
+ def randomURL = UrlList.get(randomIndex);
+ log.info randomIndex
+//...and assign its value to the Test Case Property
+ // titled &amp;quot;DynamicContentId&amp;quot;
+ def tc = testRunner.testCase;
+ tc.setPropertyValue("city", randomURL);
+
+def response=context.expand('${Request 1#response}')
+log.info response
+</con:setupScript><con:properties><con:property><con:name>city</con:name><con:value>Svidnik</con:value></con:property></con:properties></con:testCase><con:properties/></con:testSuite><con:testSuite id="173968c5-b6b9-4ce4-a041-d1a33870d48b" name="getPlaceTestSuite"><con:description>TestSuite generated for REST Service [https://maps.googleapis.com]</con:description><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="e4f613dc-0188-486a-8948-e8eace5ff61f" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="Z BA do Fila" searchProperties="true"><con:description>TestCase generated for REST Resource [Xml] located at [/maps/api/place/textsearch/xml]</con:description><con:settings/><con:testStep type="restrequest" name="PlaceSearch" id="2d45b200-c78f-4656-a8a6-1ea3d696e005"><con:settings/><con:config service="https://maps.googleapis.com" resourcePath="/maps/api/place/textsearch/xml" methodName="Xml 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="PlaceSearch" id="2ec12eda-2e48-47db-a579-48c454be90ce" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>https://maps.googleapis.com</con:endpoint><con:request/><con:originalUri>https://maps.googleapis.com/maps/api/place/textsearch/xml</con:originalUri><con:assertion type="Valid HTTP Status Codes" id="772dcc3a-cca7-4092-bac1-36fdaab3a9da" name="Valid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:assertion type="Simple Contains" id="616fcf8c-93e5-4573-9c4b-5aa7c1fbaedc" name="Contains city"><con:configuration><token>${#TestSuite#city}</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Response SLA Assertion" id="bfab1928-2a0c-4f30-82b5-3a9c85a880f5" name="Response Time SLA"><con:configuration><SLA>200</SLA></con:configuration></con:assertion><con:assertion type="GroovyScriptAssertion" id="4182afad-2f72-4e12-a4c2-dd06974ba0e6" name="sum of subjects Script "><con:configuration><scriptText>import com.eviware.soapui.support.XmlHolder
+def fromResponse = context.expand('${PlaceSearch#response}')
+def holderForAssert = new XmlHolder(fromResponse)
+
+//sum of subjects
+def actualCountFromResp = holderForAssert["count(//*:result)"]
+log.info actualCountFromResp
+assert actualCountFromResp.toInteger()==13
+
+
+
+
+
+
+
+//def SizeOfArray = holderForAssert.size()
+//log.info "count of subjects   >>> "+ SizeOfArray
+//assert SizeOfArray>=13
+//log.info "count of subjects = expected count"
+</scriptText></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters>
+  <con:entry key="query" value="${#TestSuite#subject}+${#TestSuite#city}"/>
+  <con:entry key="key" value="AIzaSyCm8oIslCMLnnLk2qQrDNbackG3qMLOr1Y"/>
+</con:parameters><con:parameterOrder><con:entry>query</con:entry><con:entry>key</con:entry></con:parameterOrder></con:restRequest></con:config></con:testStep><con:testStep type="transfer" name="adresa Filo Transfer" id="a10a3619-6399-4f49-9973-bf68b49fdfdf"><con:settings/><con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false"><con:name>formatted_address</con:name><con:sourceType>ResponseAsXml</con:sourceType><con:sourceStep>PlaceSearch</con:sourceStep><con:sourcePath>/PlaceSearchResponse/result[5]/formatted_address</con:sourcePath><con:targetType>destination</con:targetType><con:targetStep>#TestCase#</con:targetStep><con:targetPath/><con:targetTransferType>XPATH</con:targetTransferType><con:upgraded>true</con:upgraded></con:transfers></con:config></con:testStep><con:testStep type="restrequest" name="distance" id="77279b78-e5a2-490d-9127-c589b2e93527"><con:settings/><con:config service="https://maps.googleapis.com" resourcePath="/maps/api/distancematrix/xml" methodName="Xml 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="distance" id="a273e51a-0260-45f1-b6d6-6a5646d0e7d9" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>https://maps.googleapis.com</con:endpoint><con:request>Letná 247/1, 091 01 Stropkov, Slovakia</con:request><con:originalUri>https://maps.googleapis.com/maps/api/distancematrix/xml</con:originalUri><con:assertion type="Valid HTTP Status Codes" id="85ecf867-55a6-4bf0-bd65-19e88badaf8d" name="Valid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters>
+  <con:entry key="destinations" value="${#TestCase#destination}"/>
+  <con:entry key="origins" value="Astrová 46, Bratislava"/>
+  <con:entry key="key" value="AIzaSyAq4N34HIgzwzHF-YJuf1EOqRwtoqsBCfY"/>
+</con:parameters><con:parameterOrder><con:entry>origins</con:entry><con:entry>destinations</con:entry><con:entry>key</con:entry></con:parameterOrder></con:restRequest></con:config></con:testStep><con:properties><con:property><con:name>destination</con:name><con:value>Letná 247/1, 091 01 Stropkov, Slovakia</con:value></con:property></con:properties></con:testCase><con:properties><con:property><con:name>subject</con:name><con:value>bar</con:value></con:property><con:property><con:name>city</con:name><con:value>Stropkov</con:value></con:property></con:properties></con:testSuite><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:sensitiveInformation/></con:soapui-project>

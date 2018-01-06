@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="a1b6a8fb-6026-4bfc-b6c6-7685ae7b7229" activeEnvironment="Default" name="PlaceSearchGroovyAssertion_JSON_Project" resourceRoot="" soapui-version="5.4.0-EB" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:RestService" id="34b03f12-c805-4bb9-8e7c-e741a7745465" wadlVersion="http://wadl.dev.java.net/2009/02" name="https://maps.googleapis.com" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart=""/><con:endpoints><con:endpoint>https://maps.googleapis.com</con:endpoint></con:endpoints><con:resource name="PlaceSearchJsonRest" path="/maps/api/place/textsearch/json" id="b4e15116-4df4-45a7-b053-96eecd382376"><con:settings/><con:parameters><con:parameter><con:name>query</con:name><con:value>restaurants in Sydney</con:value><con:style>QUERY</con:style><con:default>restaurants in Sydney</con:default><con:path xsi:nil="true"/><con:description xsi:nil="true"/></con:parameter><con:parameter><con:name>key</con:name><con:value>AIzaSyCm8oIslCMLnnLk2qQrDNbackG3qMLOr1Y</con:value><con:style>QUERY</con:style><con:default>AIzaSyCm8oIslCMLnnLk2qQrDNbackG3qMLOr1Y</con:default><con:path xsi:nil="true"/><con:description xsi:nil="true"/></con:parameter></con:parameters><con:method name="Json 1" id="e003b1a0-8642-4f09-a695-b47f6ef2bdc1" method="GET"><con:settings/><con:parameters/><con:representation type="RESPONSE"><con:mediaType>application/json; charset=UTF-8</con:mediaType><con:status>200</con:status><con:params/><con:element xmlns:json="https://maps.googleapis.com/maps/api/place/textsearch/json">json:Response</con:element></con:representation><con:request name="Request 1" id="b6c89cc7-bca7-448c-aa5b-a49f03090d39" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>https://maps.googleapis.com</con:endpoint><con:request/><con:originalUri>https://maps.googleapis.com/maps/api/place/textsearch/json</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters>
+  <con:entry key="query" value="restaurants in Sydney"/>
+  <con:entry key="key" value="AIzaSyCm8oIslCMLnnLk2qQrDNbackG3qMLOr1Y"/>
+</con:parameters><con:parameterOrder><con:entry>query</con:entry><con:entry>key</con:entry></con:parameterOrder></con:request></con:method></con:resource></con:interface><con:testSuite id="12e533af-98b6-44fe-8f7f-8d0feb3a292a" name="PlaceSearchJsonRestTestSuite"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="1b4a4e05-c127-44b7-b7e3-c5b29110ffcc" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="TestCaseRestGroovyAssertions" searchProperties="true"><con:settings/><con:testStep type="restrequest" name="PlaceSearch" id="3ee1e1da-701b-4d25-83e6-1c8b1c48d5ab"><con:settings/><con:config service="https://maps.googleapis.com" resourcePath="/maps/api/place/textsearch/json" methodName="Json 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="PlaceSearch" id="b6c89cc7-bca7-448c-aa5b-a49f03090d39" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>https://maps.googleapis.com</con:endpoint><con:request/><con:originalUri>https://maps.googleapis.com/maps/api/place/textsearch/json</con:originalUri><con:assertion type="GroovyScriptAssertion" id="6d9eb0a7-ea3d-482a-a66d-849671468420" name="Vsetko spolu"><con:configuration><scriptText>import groovy.json.JsonSlurper
+
+def fromResponse=messageExchange.response.responseContent
+def SlurperForAssert = new JsonSlurper().parseText(fromResponse)
+
+
+//porovnanie place ID
+def expectedPlaceID = context.getTestCase().getPropertyValue("placeIdExpected")
+def actualPlaceId = SlurperForAssert.results[4].id
+assert  expectedPlaceID == actualPlaceId
+
+//status OK?
+assert "OK"== SlurperForAssert.status
+
+//porovnanie otvorene?
+def OpenNowExpectedd = context.getTestCase().getPropertyValue("OpenNowExpected")
+log.info "OpenNowExpectedd   >>> " +OpenNowExpectedd
+def OpenNowActual = SlurperForAssert.results[4].opening_hours.open_now
+log.info "OpenNowActual   >>> "+OpenNowActual
+assert OpenNowExpectedd.toBoolean()==OpenNowActual
+
+
+
+
+</scriptText></con:configuration></con:assertion><con:assertion type="GroovyScriptAssertion" id="6d9eb0a7-ea3d-482a-a66d-849671468420" name="try catch" disabled="true"><con:configuration><scriptText>import groovy.json.JsonSlurper
+def fromResponse=messageExchange.response.responseContent
+def SlurperForAssert = new JsonSlurper().parseText(fromResponse)
+
+try
+{
+	def NameActual = SlurperForAssert.results[4].name
+	NameExpected="F-ssPub"
+	
+	assert NameActual==NameExpected
+} 
+catch(AssertionError  e) 
+{
+	log.info e.getMessage()
+}
+
+//sum of subjects
+def SizeOfArray = SlurperForAssert.results.size()
+//log.info "count of subjects   >>> "+ SizeOfArray
+assert SizeOfArray>=13
+log.info "count of subjects = expected count"
+
+
+
+
+</scriptText></con:configuration></con:assertion><con:assertion type="GroovyScriptAssertion" id="0f8229c0-b7e8-4338-8d7c-57b5fcfabf2e" name="status"><con:configuration><scriptText>//status OK?
+import groovy.json.JsonSlurper
+
+def fromResponse=messageExchange.response.responseContent
+def SlurperForAssert = new JsonSlurper().parseText(fromResponse)
+assert "OK"== SlurperForAssert.status</scriptText></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters>
+  <con:entry key="query" value="${#TestSuite#subject}+${#TestSuite#city}"/>
+  <con:entry key="key" value="${#TestSuite#key}"/>
+</con:parameters><con:parameterOrder><con:entry>query</con:entry><con:entry>key</con:entry></con:parameterOrder></con:restRequest></con:config></con:testStep><con:testStep type="groovy" name="Groovy Script" id="d2218b04-098f-4ab2-bfe2-16187278d409" disabled="true"><con:settings/><con:config><script>// initializing the variable
+int a = 10;
+int b = 0;
+// try, catch block
+try{
+ // Dividing a number by zero
+    int c = a/b;
+    log.info('Result :' + c);
+}
+catch(Exception expObj)
+{
+    // Exception Handler
+    log.info('You are trying to divide ' + a + ' by ' + b + '. This is not possible actually!');
+}
+</script></con:config></con:testStep><con:testStep type="groovy" name="trycatch" id="2c8340d4-37a8-4f30-8b67-7bdf7a7232fb" disabled="true"><con:settings/><con:config><script>import groovy.json.JsonSlurper
+
+def fromResponse=messageExchange.response.responseContent
+def SlurperForAssert = new JsonSlurper().parseText(fromResponse)
+assert !(SlurperForAssert.isEmpty())
+
+//status OK?
+assert "OK"== SlurperForAssert.status
+
+//porovnanie place ID
+def expectedPlaceID = context.getTestCase().getPropertyValue("placeIdExpected")
+def actualPlaceId = SlurperForAssert.results[4].id
+assert  expectedPlaceID == actualPlaceId
+
+//name
+try
+{
+	def NameActual = SlurperForAssert.results[4].name
+	log.info "NameActual  >>> "+ NameActual
+	NameExpected="Fx-Pub"
+	log.info "NameExpected  >>> "+ NameExpected
+	boolean c  = NameExpected == NameActual
+	if (c==true) 
+	{
+	log.info "NameActual = OK"
+	}
+} 
+catch(Exception exObj) 
+{
+	log.info ("NameExpected != NameActual")
+}
+
+//sum of subjects
+def SizeOfArray = SlurperForAssert.results.size()
+//log.info "count of subjects   >>> "+ SizeOfArray
+assert SizeOfArray>=13
+log.info "count of subjects = expected count"
+
+
+
+
+</script></con:config></con:testStep><con:properties><con:property><con:name>placeIdExpected</con:name><con:value>c1f6e49108c49246ed2c53bfaa3b5b463d845c33</con:value></con:property><con:property><con:name>OpenNowExpected</con:name><con:value>true</con:value></con:property></con:properties></con:testCase><con:properties><con:property><con:name>key</con:name><con:value>AIzaSyCm8oIslCMLnnLk2qQrDNbackG3qMLOr1Y</con:value></con:property><con:property><con:name>subject</con:name><con:value>bar </con:value></con:property><con:property><con:name>city</con:name><con:value>Stropkov</con:value></con:property></con:properties></con:testSuite><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
